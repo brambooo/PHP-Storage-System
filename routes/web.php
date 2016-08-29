@@ -11,5 +11,5 @@
 // Customer routes
 Route::get('/', 'CustomersController@index');
 Route::get('customers', 'CustomersController@index');
-Route::get('customers/{customer}', 'customer@show');
-Route::get('customers/add', 'customer@add');
+Route::get('customers/{customer}', 'CustomersController@show');
+Route::post('customers/add', 'CustomersController@add');

@@ -39,6 +39,28 @@ class CustomersController extends Controller
         return view('customers.show', compact('customer'));
     }
 
+    // Long way
+    public function add(Request $req)
+    {
+        // Initialize a new customer object
+        $c = new Customer;
+
+        // Assign values from the request to the new object
+        $c->firstName   = $req->firstName;
+        $c->lastName    = $req->lastName;
+        $c->zipcode     = $req->zipcode;
+        $c->street      = $req->street;
+        $c->streetNr    = (int) $req->streetNr;     // convert input string to int
+        $c->city        = $req->city;
+        $c->yearlyPrice = (int) $req->yearlyPrice;  // convert input string to int
+        $c->location_id = (int) $req->location_id;  // convert input string to int
+
+        // Save into the database
+        $c->save();
+
+        return back();  // redirect back where we were.
+    }
+
 //    public function create(Customer $customer)
 //    {
 //        return view();
