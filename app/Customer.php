@@ -7,44 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+    // Specify table name for model
+    public $table = "customers";
+
     // Methods
 
     /**
-     * index()
-     * Shows all the customers
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function index()
-    {
-        // Use eloquent to get all customers from the model (See Customer model)
-        $aCustomers = Customer::all();
-
-        // Assign all customers to the view and return it
-        return view('customers.index', compact('aCustomers'));
-    }
-
-    /**
-     * show()
-     * Shows one specific customer based on the given ID will be used for route model binding (see below)
-     * @param Customer $customer
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    // Show a unique customer through route model binding
-    // With the given ID as route param, Laravel will use that and convert it to a customer object (based on the given Customer model type)
-    public function show(Customer $customer)
-    {
-        return view('customers.show', compact('customer'));
-    }
-
-//    public function create(Customer $customer)
-//    {
-//        return view();
-//    }
-
-    /**
      * location()
-     * get the location where this customer belongs to
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Get the location record that is associated with the customer.
+     * belongsTo: define an inverse one-to-one or many relationship. Important to define the table above, if i did not do that i got a query error...
+     * @return location record
      */
     public function location()
     {

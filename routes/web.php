@@ -4,13 +4,12 @@
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
+| This is the new location of the routes for Laravel 5.3!!!
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Customer routes
+Route::get('/', 'CustomersController@index');
+Route::get('customers', 'CustomersController@index');
+Route::get('customers/{customer}', 'customer@show');
+Route::get('customers/add', 'customer@add');
