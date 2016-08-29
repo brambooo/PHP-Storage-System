@@ -10,6 +10,13 @@ class Customer extends Model
     // Specify table name for model
     public $table = "customers";
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['firstName', 'lastName', 'zipcode', 'street', 'streetNr', 'city', 'yearlyPrice', 'location_id'];
+
     // Methods
 
     /**
@@ -22,4 +29,10 @@ class Customer extends Model
     {
         return $this->belongsTo(Location::class);
     }
+
+    public function addLocation(Location $location)
+    {
+        return $this->location()->save($location);
+    }
+
 }

@@ -39,7 +39,6 @@ class CustomersController extends Controller
         return view('customers.show', compact('customer'));
     }
 
-    // Long way
     public function add(Request $req)
     {
         // Initialize a new customer object
@@ -61,9 +60,81 @@ class CustomersController extends Controller
         return back();  // redirect back where we were.
     }
 
-//    public function create(Customer $customer)
+    /**
+     * edit()
+     * Display the form the edit the customer
+     * @param Customer $customer
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(Customer $customer)
+    {
+        return view('customers.edit', compact('customer'));
+    }
+
+    /**
+     * update()
+     * Will update a customer in the database
+     * @param Request $request
+     * @param Customer $customer
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, Customer $customer)
+    {
+        // Update customer object with all the values we get from the request
+
+        // long way
+//        $customer->update([
+//            'firstName' => $request->firstName,
+//            'lastName' => $request->lastName,
+//            'zipcode' => $request->zipcode,
+//            'street' => $request->street,
+//            'streetNr' => $request->streetNr,
+//            'city' => $request->city,
+//            'yearlyPrice' => $request->yearlyPrice,
+//            'location_id' => $request->location_id,
+//
+//        ]);
+
+        // short way
+        $customer->update($request->all());
+
+        return back();
+    }
+
+
+    // Add with validation - have to find out how to create with maybe model binding or something to make the code a bit cleaner...
+//    public function add(Request $request)
 //    {
-//        return view();
+//
+////        $this->validate($request, [
+////           'firstName'      => 'required|max100',
+////           'lastName'       => 'required|max100',
+////           'zipcode'        => 'required|max100',
+////           'firstName'      => 'required|max100',
+////           'street'         => 'required|max100',
+////           'streetNr'       => 'required|max100',
+////           'city'           => 'required|max100',
+////           'yearlyPrice'    => 'required|max100',
+////           'location_id'    => 'required|max100'
+////        ]);
+//
+//        // Initialize a new customer object
+//        $c = new Customer;
+//
+//        // Assign values from the request to the new object
+//        $c->firstName   = $request->firstName;
+//        $c->lastName    = $request->lastName;
+//        $c->zipcode     = $request->zipcode;
+//        $c->street      = $request->street;
+//        $c->streetNr    = (int) $request->streetNr;     // convert input string to int
+//        $c->city        = $request->city;
+//        $c->yearlyPrice = (int) $request->yearlyPrice;  // convert input string to int
+//        $c->location_id = (int) $request->location_id;  // convert input string to int
+//
+//        // Save into the database
+//        $c->save();
+//
+//        return back();  // redirect back where we were.
 //    }
 
     /**
