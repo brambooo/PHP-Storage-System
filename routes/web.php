@@ -19,3 +19,4 @@ Route::patch('customers/update/{customer}', 'CustomersController@update'); // Is
 
 
 Route::post('customers/add', 'CustomersController@add');
+Route::delete('customers/{customer}', 'CustomersController@delete');

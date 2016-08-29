@@ -137,6 +137,11 @@ class CustomersController extends Controller
 //        return back();  // redirect back where we were.
 //    }
 
+    public function delete(Customer $customer) {
+        $customer->delete();
+        return back();
+    }
+
     /**
      * location()
      * get the location where this customer belongs to. A customer has none or 1 location.
